@@ -10,6 +10,10 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+/**
+ *
+ * @author Felipe Garcia
+ */
 public class ImageJPanel extends JPanel {
 
     private Image fondo=null;
