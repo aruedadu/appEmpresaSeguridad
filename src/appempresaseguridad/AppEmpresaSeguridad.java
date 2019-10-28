@@ -14,10 +14,10 @@ import appempresaseguridad.gui.LoguinFrame;
 public class AppEmpresaSeguridad {
 
     /**
+     * metodo que arranca toda la aplicacion, autogenerado por netbeans
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -41,11 +41,9 @@ public class AppEmpresaSeguridad {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 LoguinFrame frame = new LoguinFrame();
-                //new LoguinFrame().setVisible(true);
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             }
         });
     }
-    
 }
