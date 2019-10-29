@@ -17,18 +17,16 @@ import appempresaseguridad.data.entity.TipoDocumento;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author alejrudu
+ * @author Felipe Garcia
  */
-public class TipoDocumentoJpaController implements Serializable {
+public class TipoDocumentoJpaController extends GenericJpaController implements Serializable {
 
-    public TipoDocumentoJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public TipoDocumentoJpaController() {
+        super();
     }
-    private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
@@ -36,13 +34,13 @@ public class TipoDocumentoJpaController implements Serializable {
 
     public void create(TipoDocumento tipoDocumento) {
         if (tipoDocumento.getPersonaList() == null) {
-            tipoDocumento.setPersonaList(new ArrayList<Persona>());
+            tipoDocumento.setPersonaList(new ArrayList<>());
         }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            List<Persona> attachedPersonaList = new ArrayList<Persona>();
+            List<Persona> attachedPersonaList = new ArrayList<>();
             for (Persona personaListPersonaToAttach : tipoDocumento.getPersonaList()) {
                 personaListPersonaToAttach = em.getReference(personaListPersonaToAttach.getClass(), personaListPersonaToAttach.getIdPersona());
                 attachedPersonaList.add(personaListPersonaToAttach);
@@ -199,5 +197,5 @@ public class TipoDocumentoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

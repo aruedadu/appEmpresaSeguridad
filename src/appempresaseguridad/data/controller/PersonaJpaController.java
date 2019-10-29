@@ -18,18 +18,16 @@ import appempresaseguridad.data.entity.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author alejrudu
+ * @author Felipe Garcia
  */
-public class PersonaJpaController implements Serializable {
+public class PersonaJpaController extends GenericJpaController implements Serializable {
 
-    public PersonaJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public PersonaJpaController() {
+        super();
     }
-    private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();

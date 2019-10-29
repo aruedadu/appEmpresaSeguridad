@@ -5,6 +5,9 @@
  */
 package appempresaseguridad.logic;
 
+import appempresaseguridad.data.controller.TipoDocumentoJpaController;
+import appempresaseguridad.data.entity.TipoDocumento;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,10 +20,17 @@ public class LoguinLogic {
      * método encargado de hacer la orquestación necesaria para verificar que
      * los datos ingresados en pantalla correspondan a un usuario registrado
      */
-    private void hacerLoguin() {
-        try{
+    public void hacerLoguin() {
+        try {
+            TipoDocumentoJpaController controller = new TipoDocumentoJpaController();
+            Object o[] = null;
+            List<TipoDocumento> listaDocumento = controller.findTipoDocumentoEntities();
             
-        } catch (Exception e){
+            for(TipoDocumento documento : listaDocumento){
+                System.err.println("test "+documento.getNombreTipoDocumento());
+            }
+            
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }

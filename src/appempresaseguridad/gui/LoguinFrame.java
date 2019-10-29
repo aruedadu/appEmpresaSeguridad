@@ -5,6 +5,8 @@
  */
 package appempresaseguridad.gui;
 
+import appempresaseguridad.logic.LoguinLogic;
+
 /**
  *
  * @author Felipe Garcia
@@ -142,9 +144,13 @@ public class LoguinFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void doLoguin(){
+        if(null == logica){
+            logica = new LoguinLogic();
+        }
         System.err.println("Hola mundo!");
         System.err.println(this.txtUsuario.getText());
         System.err.println(this.txtPassword.getPassword());
+        logica.hacerLoguin();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -157,4 +163,6 @@ public class LoguinFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
+    //Declaracion de propiedades personales, no autogeneradas
+    private LoguinLogic logica = null;
 }

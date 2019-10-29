@@ -10,7 +10,6 @@ import appempresaseguridad.data.entity.Empresa;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
@@ -18,14 +17,13 @@ import javax.persistence.criteria.Root;
 
 /**
  *
- * @author alejrudu
+ * @author Felipe Garcia
  */
-public class EmpresaJpaController implements Serializable {
+public class EmpresaJpaController extends GenericJpaController implements Serializable {
 
-    public EmpresaJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public EmpresaJpaController() {
+        super();
     }
-    private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
