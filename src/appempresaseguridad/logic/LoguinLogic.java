@@ -5,10 +5,24 @@
  */
 package appempresaseguridad.logic;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Felipe Garcia
  */
 public class LoguinLogic {
-    
+
+    /**
+     * método encargado de hacer la orquestación necesaria para verificar que
+     * los datos ingresados en pantalla correspondan a un usuario registrado
+     */
+    private void hacerLoguin() {
+        try{
+            
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
 }
