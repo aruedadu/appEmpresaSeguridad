@@ -177,7 +177,31 @@ public class UsuarioJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    /**
+     * Metodo para encontrar un usuario por el id persona
+     *
+     * @param id
+     * @return
+     */
+    public Usuario findUsuario(Persona id) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createNamedQuery("Usuario.findByIdPersona", Usuario.class);
+            q.setParameter("idPersona", id.getIdPersona());
+            return (Usuario) q.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+
+    /**
+     * metodo para verificar el loguin
+     *
+     * @param user
+     * @param password
+     * @return
+     */
     public Usuario findUsuario(String user, String password) {
         EntityManager em = getEntityManager();
         try {
@@ -202,5 +226,5 @@ public class UsuarioJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

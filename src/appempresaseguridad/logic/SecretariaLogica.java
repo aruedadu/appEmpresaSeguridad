@@ -9,11 +9,16 @@ import appempresaseguridad.data.controller.PersonaJpaController;
 import appempresaseguridad.data.controller.RolJpaController;
 import appempresaseguridad.data.controller.TipoDocumentoJpaController;
 import appempresaseguridad.data.controller.UsuarioJpaController;
+import appempresaseguridad.data.controller.exceptions.NonexistentEntityException;
 import appempresaseguridad.data.entity.Persona;
 import appempresaseguridad.data.entity.Rol;
 import appempresaseguridad.data.entity.TipoDocumento;
 import appempresaseguridad.data.entity.Usuario;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
 
 /**
  *
@@ -57,6 +62,28 @@ public class SecretariaLogica {
         persController.create(persona);
         usuario.setIdPersonaUsuario(persona);
         usuController.create(usuario);
+    }
+    
+    public Persona consultarEmpleado(String numeroDocumento){
+        Persona persEmpleado = persController.findPersona(numeroDocumento);
+        Usuario usu = usuController.findUsuario(persEmpleado);
+        List<Usuario> usuario = new ArrayList<>();
+        usuario.add(usu);
+        persEmpleado.setUsuarioList(usuario);
+        return persEmpleado;
+    }
+    
+    public void actualizarEmpleado(Persona empleado){
+        try {
+            persController.edit(empleado);
+            usuController.edit(empleado.getUsuarioList().get(0));
+        } catch (NonexistentEntityException ex) {
+            ex.printStackTrace();
+            Logger.getLogger(SecretariaLogica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Logger.getLogger(SecretariaLogica.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

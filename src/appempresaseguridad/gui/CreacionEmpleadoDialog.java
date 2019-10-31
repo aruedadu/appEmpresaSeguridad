@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class CreacionEmpleadoDialog extends javax.swing.JDialog {
 
-    private SecretariaLogica logica;
+    private final SecretariaLogica logica;
 
     /**
      * Creates new form CreacionEmpleadoFrame

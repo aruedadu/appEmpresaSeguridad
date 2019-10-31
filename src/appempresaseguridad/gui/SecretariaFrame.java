@@ -19,7 +19,6 @@ public class SecretariaFrame extends javax.swing.JFrame {
      */
     public SecretariaFrame() {
         initComponents();
-        panelRegistroEmpleado.setVisible(false);
     }
 
     /**
@@ -31,32 +30,6 @@ public class SecretariaFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelRegistroEmpleado = new javax.swing.JPanel();
-        lblRegistroEmpleado = new javax.swing.JLabel();
-        lbltipodocumento = new javax.swing.JLabel();
-        cbTiposDocumento = new javax.swing.JComboBox();
-        lblNumeroDocumento = new javax.swing.JLabel();
-        txtCreacionNumeroDocumento = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        txtCreacionNombres = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtCreacionPrimerApellido = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtCreacionSegundoApellido = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        jLabel6 = new javax.swing.JLabel();
-        cbRol = new javax.swing.JComboBox();
-        txtCreacionUsername = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txtCreacionPass = new javax.swing.JPasswordField();
-        jLabel9 = new javax.swing.JLabel();
-        txtCreacionConfirmPass = new javax.swing.JPasswordField();
-        btnCrear = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuEmpleados = new javax.swing.JMenu();
         jOptionConsultar = new javax.swing.JMenuItem();
@@ -65,146 +38,6 @@ public class SecretariaFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bienvenida Secretaria");
         setAlwaysOnTop(true);
-
-        panelRegistroEmpleado.setName(""); // NOI18N
-
-        lblRegistroEmpleado.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        lblRegistroEmpleado.setText("Registrar Empleado");
-
-        lbltipodocumento.setText("Tipo documento");
-
-        lblNumeroDocumento.setText("Número documento");
-
-        jLabel1.setText("Nombres");
-
-        jLabel2.setText("Primer Apellido");
-
-        jLabel3.setText("Segundo Apellido");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Datos Personales");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Daos de usuario");
-
-        jLabel6.setText("Rol");
-
-        jLabel7.setText("Nombre de usuario");
-
-        jLabel8.setText("Contraseña");
-
-        jLabel9.setText("Confirmar contraseña");
-
-        btnCrear.setText("Crear");
-
-        btnCancelar.setText("Cancelar");
-
-        javax.swing.GroupLayout panelRegistroEmpleadoLayout = new javax.swing.GroupLayout(panelRegistroEmpleado);
-        panelRegistroEmpleado.setLayout(panelRegistroEmpleadoLayout);
-        panelRegistroEmpleadoLayout.setHorizontalGroup(
-            panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRegistroEmpleadoLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel1)
-                        .addComponent(lblRegistroEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panelRegistroEmpleadoLayout.createSequentialGroup()
-                            .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cbTiposDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lbltipodocumento))
-                            .addGap(18, 18, 18)
-                            .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblNumeroDocumento)
-                                .addComponent(txtCreacionNumeroDocumento)))
-                        .addComponent(txtCreacionNombres)
-                        .addGroup(panelRegistroEmpleadoLayout.createSequentialGroup()
-                            .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(txtCreacionPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtCreacionSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3)))
-                        .addComponent(jSeparator1)
-                        .addComponent(jSeparator2)
-                        .addGroup(panelRegistroEmpleadoLayout.createSequentialGroup()
-                            .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cbRol, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel8))
-                            .addGap(18, 18, 18)
-                            .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel9)
-                                .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(txtCreacionUsername))))
-                        .addGroup(panelRegistroEmpleadoLayout.createSequentialGroup()
-                            .addComponent(txtCreacionPass, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtCreacionConfirmPass)))
-                    .addGroup(panelRegistroEmpleadoLayout.createSequentialGroup()
-                        .addComponent(btnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-        panelRegistroEmpleadoLayout.setVerticalGroup(
-            panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRegistroEmpleadoLayout.createSequentialGroup()
-                .addComponent(lblRegistroEmpleado)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(10, 10, 10)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbltipodocumento)
-                    .addComponent(lblNumeroDocumento))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbTiposDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCreacionNumeroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCreacionNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCreacionPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCreacionSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCreacionUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCreacionPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCreacionConfirmPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelRegistroEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCrear)
-                    .addComponent(btnCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         menuEmpleados.setText("Empleados");
 
@@ -234,38 +67,26 @@ public class SecretariaFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelRegistroEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 431, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelRegistroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 192, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jOptionConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOptionConsultarActionPerformed
-        SecretariaLogica logica = new SecretariaLogica();
-        logica.getListaTiposDocumento().forEach(
-                item -> cbTiposDocumento.addItem(item)
-        );
-        logica.getListaRoles().forEach(
-                item -> cbRol.addItem(item)
-        );
-        //panelRegistroEmpleado.setVisible(true);
         CreacionEmpleadoDialog creacionFrame = new CreacionEmpleadoDialog(this, rootPaneCheckingEnabled);
         creacionFrame.setLocationRelativeTo(null);
         creacionFrame.setVisible(true);
     }//GEN-LAST:event_jOptionConsultarActionPerformed
 
     private void jOptionActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOptionActualizarActionPerformed
-        // TODO add your handling code here:
+        ActualizacionEmpleadoDialog actDialog = new ActualizacionEmpleadoDialog(this, rootPaneCheckingEnabled);
+        actDialog.setLocationRelativeTo(null);
+        actDialog.setVisible(true);
     }//GEN-LAST:event_jOptionActualizarActionPerformed
 
     /**
@@ -305,36 +126,10 @@ public class SecretariaFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCrear;
-    private javax.swing.JComboBox cbRol;
-    private javax.swing.JComboBox cbTiposDocumento;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jOptionActualizar;
     private javax.swing.JMenuItem jOptionConsultar;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lblNumeroDocumento;
-    private javax.swing.JLabel lblRegistroEmpleado;
-    private javax.swing.JLabel lbltipodocumento;
     private javax.swing.JMenu menuEmpleados;
-    private javax.swing.JPanel panelRegistroEmpleado;
-    private javax.swing.JPasswordField txtCreacionConfirmPass;
-    private javax.swing.JTextField txtCreacionNombres;
-    private javax.swing.JTextField txtCreacionNumeroDocumento;
-    private javax.swing.JPasswordField txtCreacionPass;
-    private javax.swing.JTextField txtCreacionPrimerApellido;
-    private javax.swing.JTextField txtCreacionSegundoApellido;
-    private javax.swing.JTextField txtCreacionUsername;
     // End of variables declaration//GEN-END:variables
 
     //Propiedades propias
