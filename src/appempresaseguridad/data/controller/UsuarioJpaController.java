@@ -21,14 +21,13 @@ import javax.persistence.EntityManager;
  *
  * @author Felipe Garcia
  */
-public class UsuarioJpaController extends GenericJpaController implements Serializable {
+public class UsuarioJpaController implements Serializable {
 
     public UsuarioJpaController() {
-        super();
     }
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        return GenericJpaController.getInstance().getEntityManager();
     }
 
     public void create(Usuario usuario) {
@@ -174,6 +173,18 @@ public class UsuarioJpaController extends GenericJpaController implements Serial
         EntityManager em = getEntityManager();
         try {
             return em.find(Usuario.class, id);
+        } finally {
+            em.close();
+        }
+    }
+    
+    public Usuario findUsuario(String user, String password) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createNamedQuery("Usuario.findByPassUsuarioNombreUsuario", Usuario.class);
+            q.setParameter("nombreUsuario", user);
+            q.setParameter("passUsuario", password);
+            return (Usuario) q.getSingleResult();
         } finally {
             em.close();
         }

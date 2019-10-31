@@ -22,14 +22,13 @@ import javax.persistence.EntityManager;
  *
  * @author Felipe Garcia
  */
-public class RolJpaController extends GenericJpaController implements Serializable {
+public class RolJpaController implements Serializable {
 
     public RolJpaController() {
-        super();
     }
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        return GenericJpaController.getInstance().getEntityManager();
     }
 
     public void create(Rol rol) {

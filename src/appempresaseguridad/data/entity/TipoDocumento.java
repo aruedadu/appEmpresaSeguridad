@@ -117,7 +117,7 @@ public class TipoDocumento implements Serializable {
 
     @Override
     public String toString() {
-        return "appempresaseguridad.data.entity.TipoDocumento[ idTipoDocumento=" + idTipoDocumento + " ]";
+        return this.getNombreTipoDocumento();
     }
     
 }

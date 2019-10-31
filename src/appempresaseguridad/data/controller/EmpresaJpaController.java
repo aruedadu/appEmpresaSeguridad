@@ -19,14 +19,13 @@ import javax.persistence.criteria.Root;
  *
  * @author Felipe Garcia
  */
-public class EmpresaJpaController extends GenericJpaController implements Serializable {
+public class EmpresaJpaController implements Serializable {
 
     public EmpresaJpaController() {
-        super();
     }
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        return GenericJpaController.getInstance().getEntityManager();
     }
 
     public void create(Empresa empresa) {

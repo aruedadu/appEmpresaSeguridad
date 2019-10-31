@@ -5,9 +5,11 @@
  */
 package appempresaseguridad.logic;
 
-import appempresaseguridad.data.controller.TipoDocumentoJpaController;
-import appempresaseguridad.data.entity.TipoDocumento;
-import java.util.List;
+import appempresaseguridad.data.controller.UsuarioJpaController;
+import appempresaseguridad.data.entity.Usuario;
+import appempresaseguridad.gui.SecretariaFrame;
+import javax.persistence.NoResultException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,18 +21,46 @@ public class LoguinLogic {
     /**
      * método encargado de hacer la orquestación necesaria para verificar que
      * los datos ingresados en pantalla correspondan a un usuario registrado
+     *
+     * @param user
+     * @param password
+     * @param loguin
      */
-    public void hacerLoguin() {
+    public void hacerLoguin(String user, String password, JFrame loguin) {
         try {
-            TipoDocumentoJpaController controller = new TipoDocumentoJpaController();
-            Object o[] = null;
-            List<TipoDocumento> listaDocumento = controller.findTipoDocumentoEntities();
-            
-            for(TipoDocumento documento : listaDocumento){
-                System.err.println("test "+documento.getNombreTipoDocumento());
+            UsuarioJpaController userController = new UsuarioJpaController();
+            Usuario userObject = userController.findUsuario(user, password);
+            loguin.dispose();
+
+            switch (userObject.getIdRolUsuario().getNombreRol()) {
+                case "ADMINISTRADOR":
+
+                    break;
+
+                case "SECRETARIA":
+
+                    SecretariaFrame frame = new SecretariaFrame();
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+
+                    break;
+
+                case "VIGILANTE":
+
+                    break;
+
+                case "SUPERVISOR":
+
+                    break;
+
+                default:
+                    break;
             }
-            
+
+        } catch (NoResultException e) {
+            JOptionPane.showMessageDialog(null, "El nombre de usuario y la clave de acceso no corresponden");
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }

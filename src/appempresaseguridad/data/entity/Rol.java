@@ -104,7 +104,7 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return "appempresaseguridad.data.entity.Rol[ idRol=" + idRol + " ]";
+        return this.getNombreRol();
     }
     
 }

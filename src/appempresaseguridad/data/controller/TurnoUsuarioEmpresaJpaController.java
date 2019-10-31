@@ -21,14 +21,13 @@ import javax.persistence.criteria.Root;
  *
  * @author Felipe Garcia
  */
-public class TurnoUsuarioEmpresaJpaController extends GenericJpaController implements Serializable {
+public class TurnoUsuarioEmpresaJpaController implements Serializable {
 
     public TurnoUsuarioEmpresaJpaController() {
-        super();
     }
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        return GenericJpaController.getInstance().getEntityManager();
     }
 
     public void create(TurnoUsuarioEmpresa turnoUsuarioEmpresa) throws PreexistingEntityException, Exception {

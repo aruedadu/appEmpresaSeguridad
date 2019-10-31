@@ -23,14 +23,13 @@ import javax.persistence.EntityManager;
  *
  * @author Felipe Garcia
  */
-public class PersonaJpaController extends GenericJpaController implements Serializable {
+public class PersonaJpaController implements Serializable {
 
     public PersonaJpaController() {
-        super();
     }
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        return GenericJpaController.getInstance().getEntityManager();
     }
 
     public void create(Persona persona) {
@@ -213,6 +212,19 @@ public class PersonaJpaController extends GenericJpaController implements Serial
             em.close();
         }
     }
+    
+    public Persona findPersona(String numeroIdentificacion) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createNamedQuery("Persona.findByNumeroDocumentoPersona", Persona.class);
+            q.setParameter("numeroDocumentoPersona", numeroIdentificacion);
+            return (Persona) q.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+    
+    //Persona.findByNumeroDocumentoPersona
 
     public int getPersonaCount() {
         EntityManager em = getEntityManager();

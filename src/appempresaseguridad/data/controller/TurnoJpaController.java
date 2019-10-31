@@ -19,14 +19,13 @@ import javax.persistence.criteria.Root;
  *
  * @author Felipe Garcia
  */
-public class TurnoJpaController extends GenericJpaController implements Serializable {
+public class TurnoJpaController implements Serializable {
 
     public TurnoJpaController() {
-        super();
     }
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        return GenericJpaController.getInstance().getEntityManager();
     }
 
     public void create(Turno turno) {

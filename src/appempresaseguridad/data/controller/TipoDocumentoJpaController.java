@@ -22,14 +22,13 @@ import javax.persistence.EntityManager;
  *
  * @author Felipe Garcia
  */
-public class TipoDocumentoJpaController extends GenericJpaController implements Serializable {
+public class TipoDocumentoJpaController implements Serializable {
 
     public TipoDocumentoJpaController() {
-        super();
     }
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        return GenericJpaController.getInstance().getEntityManager();
     }
 
     public void create(TipoDocumento tipoDocumento) {

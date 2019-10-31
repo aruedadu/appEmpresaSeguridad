@@ -6,6 +6,8 @@
 package appempresaseguridad.gui;
 
 import appempresaseguridad.logic.LoguinLogic;
+import appempresaseguridad.util.StringUtil;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -129,28 +131,43 @@ public class LoguinFrame extends javax.swing.JFrame {
 
     /**
      * Metodo que se ejecuta al presionar el boton balidar
-     * @param evt 
+     *
+     * @param evt
      */
     private void btnLoguinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoguinActionPerformed
         this.doLoguin();
     }//GEN-LAST:event_btnLoguinActionPerformed
 
     /**
-     * ActionPerformed del campo de texto password para mapear la accion del boton enter
-     * @param evt 
+     * ActionPerformed del campo de texto password para mapear la accion del
+     * boton enter
+     *
+     * @param evt
      */
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         this.doLoguin();
     }//GEN-LAST:event_txtPasswordActionPerformed
 
-    private void doLoguin(){
-        if(null == logica){
-            logica = new LoguinLogic();
+    /**
+     * metodo que realiza las validaciones mínimas para un loguin exitoso, si
+     * dichas validaciones son superadas, se llama al orquestador de base de
+     * datos
+     */
+    private void doLoguin() {
+        if (!this.txtUsuario.getText().isEmpty() && this.txtPassword.getPassword().length != 0) {
+            String pass = new String(this.txtPassword.getPassword());
+            if (null == logica) {
+                logica = new LoguinLogic();
+            }
+            if (StringUtil.checkExpressionPass(pass)) {
+                this.txtPassword.setText("");
+                logica.hacerLoguin(this.txtUsuario.getText(), pass, this);
+            } else {
+                JOptionPane.showMessageDialog(null, StringUtil.MESAJE_ERROR_PASS);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "El campo usuario y contraseña son obligatorios");
         }
-        System.err.println("Hola mundo!");
-        System.err.println(this.txtUsuario.getText());
-        System.err.println(this.txtPassword.getPassword());
-        logica.hacerLoguin();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

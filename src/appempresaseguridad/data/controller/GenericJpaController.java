@@ -5,22 +5,46 @@
  */
 package appempresaseguridad.data.controller;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
  *
- * Clase creada para generalizar la creacion del entity manager factory, y no
- * repetir el proceso por cada controlador JPA
+ * Singleton para asegurar la creacion de una sola conexion a base de datos
  *
  * @author Felipe Garcia
  */
 public class GenericJpaController {
 
-    protected EntityManagerFactory emf = null;
+    private EntityManagerFactory emf = null;
 
-    public GenericJpaController() {
+    private static volatile GenericJpaController genericController;
+
+    private GenericJpaController() {
         this.emf = Persistence.createEntityManagerFactory("appEmpresaSeguridadPU");
+        emf.createEntityManager();
     }
 
+    public static GenericJpaController getInstance() {
+        if (null == genericController) {
+            synchronized (GenericJpaController.class) {
+                if (null == genericController) {
+                    genericController = new GenericJpaController();
+                }
+            }
+        }
+        return genericController;
+    }
+
+    /**
+     * @return the emf
+     */
+    public EntityManagerFactory getEmf() {
+        return this.emf;
+    }
+    
+    public EntityManager getEntityManager() {
+        return getEmf().createEntityManager();
+    }
 }
