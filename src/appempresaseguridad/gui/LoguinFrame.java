@@ -5,6 +5,7 @@
  */
 package appempresaseguridad.gui;
 
+import appempresaseguridad.gui.personalized.ImageJPanel;
 import appempresaseguridad.logic.LoguinLogic;
 import appempresaseguridad.util.StringUtil;
 import javax.swing.JOptionPane;
@@ -31,7 +32,8 @@ public class LoguinFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelLogo = new javax.swing.JPanel();
+    	panelLogo = new ImageJPanel();
+    	panelLogo.setImage("/appempresaseguridad/gui/resources/policeman.png");
         lblUsuario = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
@@ -175,7 +177,7 @@ public class LoguinFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnLoguin;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUsuario;
-    private javax.swing.JPanel panelLogo;
+    private ImageJPanel panelLogo;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

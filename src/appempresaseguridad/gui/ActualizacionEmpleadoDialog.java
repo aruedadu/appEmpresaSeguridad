@@ -8,6 +8,8 @@ package appempresaseguridad.gui;
 import appempresaseguridad.data.entity.Persona;
 import appempresaseguridad.data.entity.Rol;
 import appempresaseguridad.logic.SecretariaLogica;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.NoResultException;
 import javax.swing.JOptionPane;
 
@@ -60,6 +62,12 @@ public class ActualizacionEmpleadoDialog extends javax.swing.JDialog {
 
         jLabel1.setText("Número documento");
 
+        txtBuscarDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarDocumentoActionPerformed(evt);
+            }
+        });
+
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,8 +77,6 @@ public class ActualizacionEmpleadoDialog extends javax.swing.JDialog {
 
         tblEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
@@ -148,8 +154,8 @@ public class ActualizacionEmpleadoDialog extends javax.swing.JDialog {
                     .addComponent(txtBuscarDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -179,7 +185,7 @@ public class ActualizacionEmpleadoDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+    private void buscar() {
         if (!txtBuscarDocumento.getText().trim().isEmpty()) {
             tblEmpleado.removeAll();
             cbRol.setSelectedIndex(0);
@@ -199,6 +205,10 @@ public class ActualizacionEmpleadoDialog extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar un número de documento");
         }
+    }
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        this.buscar();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -206,16 +216,26 @@ public class ActualizacionEmpleadoDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void tnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tnActualizarActionPerformed
-        if(null != empleado){
-            empleado.setNumeroDocumentoPersona((String) tblEmpleado.getModel().getValueAt(0, 0));
-            empleado.setNombresPersona((String) tblEmpleado.getModel().getValueAt(0, 1));
-            empleado.setPrimerApellidoPersona((String) tblEmpleado.getModel().getValueAt(0, 2));
-            empleado.setSegundoApellidoPersona((String) tblEmpleado.getModel().getValueAt(0, 3));
-            empleado.getUsuarioList().get(0).setNombreUsuario((String) tblEmpleado.getModel().getValueAt(0, 4));
-            empleado.getUsuarioList().get(0).setIdRolUsuario((Rol) cbRol.getSelectedItem());
-            logica.actualizarEmpleado(empleado);
+        if (null != empleado) {
+            try {
+                empleado.setNumeroDocumentoPersona((String) tblEmpleado.getModel().getValueAt(0, 0));
+                empleado.setNombresPersona((String) tblEmpleado.getModel().getValueAt(0, 1));
+                empleado.setPrimerApellidoPersona((String) tblEmpleado.getModel().getValueAt(0, 2));
+                empleado.setSegundoApellidoPersona((String) tblEmpleado.getModel().getValueAt(0, 3));
+                empleado.getUsuarioList().get(0).setNombreUsuario((String) tblEmpleado.getModel().getValueAt(0, 4));
+                empleado.getUsuarioList().get(0).setIdRolUsuario((Rol) cbRol.getSelectedItem());
+                logica.actualizarEmpleado(empleado);
+                this.buscar();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
         }
     }//GEN-LAST:event_tnActualizarActionPerformed
+
+    private void txtBuscarDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarDocumentoActionPerformed
+        this.buscar();
+    }//GEN-LAST:event_txtBuscarDocumentoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

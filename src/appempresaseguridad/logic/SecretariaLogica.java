@@ -57,14 +57,14 @@ public class SecretariaLogica {
     public List<Rol> getListaRoles() {
         return listaRoles;
     }
-    
-    public void crearUsuario(Persona persona, Usuario usuario){
+
+    public void crearUsuario(Persona persona, Usuario usuario) {
         persController.create(persona);
         usuario.setIdPersonaUsuario(persona);
         usuController.create(usuario);
     }
-    
-    public Persona consultarEmpleado(String numeroDocumento){
+
+    public Persona consultarEmpleado(String numeroDocumento) {
         Persona persEmpleado = persController.findPersona(numeroDocumento);
         Usuario usu = usuController.findUsuario(persEmpleado);
         List<Usuario> usuario = new ArrayList<>();
@@ -72,18 +72,10 @@ public class SecretariaLogica {
         persEmpleado.setUsuarioList(usuario);
         return persEmpleado;
     }
-    
-    public void actualizarEmpleado(Persona empleado){
-        try {
-            persController.edit(empleado);
-            usuController.edit(empleado.getUsuarioList().get(0));
-        } catch (NonexistentEntityException ex) {
-            ex.printStackTrace();
-            Logger.getLogger(SecretariaLogica.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            Logger.getLogger(SecretariaLogica.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+    public void actualizarEmpleado(Persona empleado) throws NonexistentEntityException, Exception {
+        persController.edit(empleado);
+        usuController.edit(empleado.getUsuarioList().get(0));
     }
 
 }
