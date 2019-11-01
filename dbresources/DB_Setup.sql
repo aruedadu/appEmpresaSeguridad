@@ -67,15 +67,28 @@ CREATE TABLE `empresa_seguridad`.`usuario` (
     ON UPDATE NO ACTION)
 COMMENT = 'Tabla en la que se almacenan los usuarios de la aplicacion (Administrador, secretaria, supervisor y vigilantes)';
 
-CREATE TABLE `empresa_seguridad`.`turno_usuario_empresa` (
-  `id_usuario` INT NOT NULL,
-  `id_empresa` INT NOT NULL,
-  `id_turno` INT NOT NULL,
-  `fehca_inicio_turno` DATE NOT NULL,
-  `fecha_fin_turno` DATE NOT NULL,
-  PRIMARY KEY (`id_usuario`, `id_empresa`, `id_turno`, `fehca_inicio_turno`, `fecha_fin_turno`))
-COMMENT = 'Tabla en la que se relacionan los turnos con los usuarios y las empresas';
+CREATE TABLE `turno_usuario_empresa` (
+  `id_usuario` int(11) NOT NULL,
+  `id_empresa` int(11) NOT NULL,
+  `id_turno` int(11) NOT NULL,
+  `fehca_inicio_turno` date NOT NULL,
+  `fecha_fin_turno` date NOT NULL,
+  `id_registro_turno` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id_registro_turno`)
+) COMMENT='Tabla en la que se relacionan los turnos con los usuarios y las empresas';
 
+
+CREATE TABLE `reporte_turnos` (
+  `id_registro` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario_registra` int(11) NOT NULL,
+  `id_usuario_reportado` int(11) NOT NULL,
+  `comentario_reporte` varchar(1000) NOT NULL,
+  PRIMARY KEY (`id_registro`),
+  KEY `id_usuario_reporta_idx` (`id_usuario_registra`),
+  KEY `id_usuario_reportado_idx` (`id_usuario_reportado`),
+  CONSTRAINT `id_usuario_reporta` FOREIGN KEY (`id_usuario_registra`) REFERENCES `usuario` (`id_usuario`),
+  CONSTRAINT `id_usuario_reportado` FOREIGN KEY (`id_usuario_reportado`) REFERENCES `usuario` (`id_usuario`)
+) COMMENT = 'Tabla en la que se registran los comentarios hechos por el supervisor';
 
 
 --Parametrizacion de la base de datos
@@ -130,6 +143,10 @@ INSERT INTO `empresa_seguridad`.`usuario` (`nombre_usuario`, `pass_usuario`, `id
 INSERT INTO `empresa_seguridad`.`usuario` (`nombre_usuario`, `pass_usuario`, `id_persona_usuario`, `id_rol_usuario`) VALUES ('vigilante.13', 'vig13', '15', '3');
 
 
+INSERT INTO `empresa_seguridad`.`turno_usuario_empresa` (`id_usuario`, `id_empresa`, `id_turno`, `fehca_inicio_turno`, `fecha_fin_turno`) VALUES ('4', '1', '1', '2019-10-21', '2019-11-03');
+INSERT INTO `empresa_seguridad`.`turno_usuario_empresa` (`id_usuario`, `id_empresa`, `id_turno`, `fehca_inicio_turno`, `fecha_fin_turno`) VALUES ('5', '1', '2', '2019-10-21', '2019-11-03');
+INSERT INTO `empresa_seguridad`.`turno_usuario_empresa` (`id_usuario`, `id_empresa`, `id_turno`, `fehca_inicio_turno`, `fecha_fin_turno`) VALUES ('6', '2', '1', '2019-10-21', '2019-11-03');
+INSERT INTO `empresa_seguridad`.`turno_usuario_empresa` (`id_usuario`, `id_empresa`, `id_turno`, `fehca_inicio_turno`, `fecha_fin_turno`) VALUES ('7', '2', '2', '2019-10-21', '2019-11-03');
 
 
 

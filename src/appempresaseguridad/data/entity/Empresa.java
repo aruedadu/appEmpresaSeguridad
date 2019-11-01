@@ -89,7 +89,7 @@ public class Empresa implements Serializable {
 
     @Override
     public String toString() {
-        return "appempresaseguridad.data.entity.Empresa[ idEmpresa=" + idEmpresa + " ]";
+        return this.getNombreEmpresa();
     }
     
 }

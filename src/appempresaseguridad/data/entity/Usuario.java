@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Usuario.findByIdPersona", query = "SELECT u FROM Usuario u WHERE u.idPersonaUsuario.idPersona = :idPersona"),
     @NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario"),
     @NamedQuery(name = "Usuario.findByPassUsuario", query = "SELECT u FROM Usuario u WHERE u.passUsuario = :passUsuario"),
+    @NamedQuery(name = "Usuario.findByIdEmpresa", query = "SELECT u FROM Usuario u WHERE u.idUsuario IN (SELECT e.turnoUsuarioEmpresaPK.idUsuario FROM TurnoUsuarioEmpresa e WHERE e.turnoUsuarioEmpresaPK.idEmpresa = :idEmpresa AND :fecha BETWEEN e.turnoUsuarioEmpresaPK.fehcaInicioTurno AND e.turnoUsuarioEmpresaPK.fechaFinTurno)"),
     @NamedQuery(name = "Usuario.findByPassUsuarioNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.passUsuario = :passUsuario AND u.nombreUsuario = :nombreUsuario")})
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -128,7 +129,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "appempresaseguridad.data.entity.Usuario[ idUsuario=" + idUsuario + " ]";
+        return this.getNombreUsuario();
     }
     
 }

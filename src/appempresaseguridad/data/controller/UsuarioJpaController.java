@@ -14,6 +14,8 @@ import javax.persistence.criteria.Root;
 import appempresaseguridad.data.entity.Persona;
 import appempresaseguridad.data.entity.Rol;
 import appempresaseguridad.data.entity.Usuario;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -213,6 +215,20 @@ public class UsuarioJpaController implements Serializable {
             em.close();
         }
     }
+    
+    //Usuario.findByIdEmpresa
+    public List<Usuario> findUsuariosEmpresaEntities(int idEmpresa, Date fecha) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createNamedQuery("Usuario.findByIdEmpresa", Usuario.class);
+            q.setParameter("idEmpresa", idEmpresa);
+            System.err.println(fecha);
+            q.setParameter("fecha", fecha);
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
+    }
 
     public int getUsuarioCount() {
         EntityManager em = getEntityManager();
@@ -226,5 +242,4 @@ public class UsuarioJpaController implements Serializable {
             em.close();
         }
     }
-
 }

@@ -7,7 +7,8 @@ package appempresaseguridad.logic;
 
 import appempresaseguridad.data.controller.UsuarioJpaController;
 import appempresaseguridad.data.entity.Usuario;
-import appempresaseguridad.gui.SecretariaFrame;
+import appempresaseguridad.gui.secretaria.SecretariaFrame;
+import appempresaseguridad.gui.supervisor.SupervisorFrame;
 import javax.persistence.NoResultException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -39,10 +40,9 @@ public class LoguinLogic {
 
                 case "SECRETARIA":
 
-                    SecretariaFrame frame = new SecretariaFrame();
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
-
+                    SecretariaFrame frameSecretaria = new SecretariaFrame();
+                    frameSecretaria.setLocationRelativeTo(null);
+                    frameSecretaria.setVisible(true);
                     break;
 
                 case "VIGILANTE":
@@ -50,7 +50,10 @@ public class LoguinLogic {
                     break;
 
                 case "SUPERVISOR":
-
+                    
+                    SupervisorFrame frameSupervisor = new SupervisorFrame();
+                    frameSupervisor.setLocationRelativeTo(null);
+                    frameSupervisor.setVisible(true);
                     break;
 
                 default:
