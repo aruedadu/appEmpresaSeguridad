@@ -8,7 +8,7 @@ package appempresaseguridad.gui.supervisor;
 import appempresaseguridad.data.entity.Empresa;
 import appempresaseguridad.data.entity.ReporteTurnos;
 import appempresaseguridad.data.entity.Usuario;
-import appempresaseguridad.logic.SupervisorLogica;
+import appempresaseguridad.logic.supervisor.SupervisorLogica;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByIdPersona", query = "SELECT u FROM Usuario u WHERE u.idPersonaUsuario.idPersona = :idPersona"),
     @NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario"),
     @NamedQuery(name = "Usuario.findByPassUsuario", query = "SELECT u FROM Usuario u WHERE u.passUsuario = :passUsuario"),
-    @NamedQuery(name = "Usuario.findByIdEmpresa", query = "SELECT u FROM Usuario u WHERE u.idUsuario IN (SELECT e.turnoUsuarioEmpresaPK.idUsuario FROM TurnoUsuarioEmpresa e WHERE e.turnoUsuarioEmpresaPK.idEmpresa = :idEmpresa AND :fecha BETWEEN e.turnoUsuarioEmpresaPK.fehcaInicioTurno AND e.turnoUsuarioEmpresaPK.fechaFinTurno)"),
+    @NamedQuery(name = "Usuario.findByIdEmpresa", query = "SELECT u FROM Usuario u WHERE u.idUsuario IN (SELECT e.idUsuario FROM TurnoUsuarioEmpresa e WHERE e.idEmpresa = :idEmpresa AND :fecha BETWEEN e.fehcaInicioTurno AND e.fechaFinTurno)"),
     @NamedQuery(name = "Usuario.findByPassUsuarioNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.passUsuario = :passUsuario AND u.nombreUsuario = :nombreUsuario")})
 public class Usuario implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarioRegistra")

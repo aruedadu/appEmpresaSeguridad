@@ -6,10 +6,9 @@
 package appempresaseguridad.data.controller;
 
 import appempresaseguridad.data.controller.exceptions.NonexistentEntityException;
-import appempresaseguridad.data.controller.exceptions.PreexistingEntityException;
 import appempresaseguridad.data.entity.TurnoUsuarioEmpresa;
-import appempresaseguridad.data.entity.TurnoUsuarioEmpresaPK;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -19,7 +18,7 @@ import javax.persistence.criteria.Root;
 
 /**
  *
- * @author Felipe Garcia
+ * @author alejrudu
  */
 public class TurnoUsuarioEmpresaJpaController implements Serializable {
 
@@ -30,21 +29,13 @@ public class TurnoUsuarioEmpresaJpaController implements Serializable {
         return GenericJpaController.getInstance().getEntityManager();
     }
 
-    public void create(TurnoUsuarioEmpresa turnoUsuarioEmpresa) throws PreexistingEntityException, Exception {
-        if (turnoUsuarioEmpresa.getTurnoUsuarioEmpresaPK() == null) {
-            turnoUsuarioEmpresa.setTurnoUsuarioEmpresaPK(new TurnoUsuarioEmpresaPK());
-        }
+    public void create(TurnoUsuarioEmpresa turnoUsuarioEmpresa) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
             em.persist(turnoUsuarioEmpresa);
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findTurnoUsuarioEmpresa(turnoUsuarioEmpresa.getTurnoUsuarioEmpresaPK()) != null) {
-                throw new PreexistingEntityException("TurnoUsuarioEmpresa " + turnoUsuarioEmpresa + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -62,7 +53,7 @@ public class TurnoUsuarioEmpresaJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                TurnoUsuarioEmpresaPK id = turnoUsuarioEmpresa.getTurnoUsuarioEmpresaPK();
+                Integer id = turnoUsuarioEmpresa.getIdRegistroTurno();
                 if (findTurnoUsuarioEmpresa(id) == null) {
                     throw new NonexistentEntityException("The turnoUsuarioEmpresa with id " + id + " no longer exists.");
                 }
@@ -75,7 +66,7 @@ public class TurnoUsuarioEmpresaJpaController implements Serializable {
         }
     }
 
-    public void destroy(TurnoUsuarioEmpresaPK id) throws NonexistentEntityException {
+    public void destroy(Integer id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -83,7 +74,7 @@ public class TurnoUsuarioEmpresaJpaController implements Serializable {
             TurnoUsuarioEmpresa turnoUsuarioEmpresa;
             try {
                 turnoUsuarioEmpresa = em.getReference(TurnoUsuarioEmpresa.class, id);
-                turnoUsuarioEmpresa.getTurnoUsuarioEmpresaPK();
+                turnoUsuarioEmpresa.getIdRegistroTurno();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The turnoUsuarioEmpresa with id " + id + " no longer exists.", enfe);
             }
@@ -120,7 +111,21 @@ public class TurnoUsuarioEmpresaJpaController implements Serializable {
         }
     }
 
-    public TurnoUsuarioEmpresa findTurnoUsuarioEmpresa(TurnoUsuarioEmpresaPK id) {
+    //TurnoUsuarioEmpresa.findByFechaInicioFechaFinTurno
+    public List<TurnoUsuarioEmpresa> generarReporte(Date fechaInicio, Date fechaFin) {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createNamedQuery("TurnoUsuarioEmpresa.findByFechaInicioFechaFinTurno", TurnoUsuarioEmpresa.class);
+            q.setParameter("fechaInicio", fechaInicio);
+            q.setParameter("fechaFin", fechaFin);
+            return q.getResultList();
+
+        } finally {
+            em.close();
+        }
+    }
+
+    public TurnoUsuarioEmpresa findTurnoUsuarioEmpresa(Integer id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(TurnoUsuarioEmpresa.class, id);
@@ -141,5 +146,5 @@ public class TurnoUsuarioEmpresaJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

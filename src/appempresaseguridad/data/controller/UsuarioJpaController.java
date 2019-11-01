@@ -14,7 +14,6 @@ import javax.persistence.criteria.Root;
 import appempresaseguridad.data.entity.Persona;
 import appempresaseguridad.data.entity.Rol;
 import appempresaseguridad.data.entity.Usuario;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
