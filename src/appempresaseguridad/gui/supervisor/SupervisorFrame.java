@@ -6,25 +6,30 @@
 package appempresaseguridad.gui.supervisor;
 
 import appempresaseguridad.data.entity.Empresa;
+import appempresaseguridad.data.entity.ReporteTurnos;
+import appempresaseguridad.data.entity.Usuario;
 import appempresaseguridad.logic.SupervisorLogica;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author alejrudu
+ * @author Felipe
  */
 public class SupervisorFrame extends javax.swing.JFrame {
 
-    private SupervisorLogica logica;
+    private final SupervisorLogica logica;
+    private Usuario userObject;
 
     /**
      * Creates new form SupervisorFrame
      */
-    public SupervisorFrame() {
+    public SupervisorFrame(Usuario userObject) {
         initComponents();
+        this.userObject = userObject;
         this.logica = new SupervisorLogica();
         this.logica.getEmpresas().forEach(
                 item -> cbEmpresa.addItem(item)
@@ -48,7 +53,7 @@ public class SupervisorFrame extends javax.swing.JFrame {
         cbUsuarios = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtComentario = new javax.swing.JTextArea();
         btnCancelar = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
 
@@ -73,9 +78,9 @@ public class SupervisorFrame extends javax.swing.JFrame {
 
         jLabel4.setText("Comentario");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtComentario.setColumns(20);
+        txtComentario.setRows(5);
+        jScrollPane1.setViewportView(txtComentario);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -99,26 +104,24 @@ public class SupervisorFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(cbUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnRegistrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar)))
+                        .addComponent(btnCancelar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(cbUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -170,16 +173,39 @@ public class SupervisorFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void cbEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEmpresaActionPerformed
+        cbUsuarios.removeAllItems();
+        cbUsuarios.addItem("<--->");
         if (cbEmpresa.getSelectedIndex() > 0) {
-            cbUsuarios.removeAllItems();
             this.logica.getUsuariosEmpresaTurno(((Empresa) cbEmpresa.getSelectedItem()).getIdEmpresa(), new Date()).forEach(
                     item -> cbUsuarios.addItem(item)
             );
         }
     }//GEN-LAST:event_cbEmpresaActionPerformed
 
+    private void validarObligatorios() throws Exception {
+        if (cbUsuarios.getSelectedIndex() == 0 || cbEmpresa.getSelectedIndex() == 0 || txtComentario.getText().trim().isEmpty()) {
+            throw new Exception("Por favor diligencie todos los campos.");
+        }
+    }
+
+    /**
+     *
+     * @param evt
+     */
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+        try {
+            this.validarObligatorios();
+            ReporteTurnos reporte = new ReporteTurnos();
+            reporte.setComentarioReporte(txtComentario.getText());
+            reporte.setIdUsuarioReportado((Usuario) cbUsuarios.getSelectedItem());
+            reporte.setIdUsuarioRegistra(this.userObject);
+            this.logica.registrarComentario(reporte);
+            JOptionPane.showMessageDialog(this, "Comentario registrado con éxito");
+            cbEmpresa.setSelectedIndex(0);
+            txtComentario.setText("");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
@@ -212,7 +238,7 @@ public class SupervisorFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SupervisorFrame().setVisible(true);
+                new SupervisorFrame(new Usuario(3)).setVisible(true);
             }
         });
     }
@@ -228,6 +254,6 @@ public class SupervisorFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txtComentario;
     // End of variables declaration//GEN-END:variables
 }

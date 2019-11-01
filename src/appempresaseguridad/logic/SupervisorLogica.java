@@ -6,8 +6,10 @@
 package appempresaseguridad.logic;
 
 import appempresaseguridad.data.controller.EmpresaJpaController;
+import appempresaseguridad.data.controller.ReporteTurnosJpaController;
 import appempresaseguridad.data.controller.UsuarioJpaController;
 import appempresaseguridad.data.entity.Empresa;
+import appempresaseguridad.data.entity.ReporteTurnos;
 import appempresaseguridad.data.entity.Usuario;
 import java.util.Date;
 import java.util.List;
@@ -20,10 +22,12 @@ public class SupervisorLogica {
     
     private final EmpresaJpaController empController;
     private final UsuarioJpaController usuController;
+    private final ReporteTurnosJpaController repController;
     
     public SupervisorLogica(){
         this.empController = new EmpresaJpaController();
         this.usuController = new UsuarioJpaController();
+        this.repController = new ReporteTurnosJpaController();
     }
     
     public List<Empresa> getEmpresas(){
@@ -32,6 +36,10 @@ public class SupervisorLogica {
     
     public List<Usuario> getUsuariosEmpresaTurno(int idEmpresa, Date fecha){
         return usuController.findUsuariosEmpresaEntities(idEmpresa, fecha);
+    }
+    
+    public void registrarComentario(ReporteTurnos reporte){
+        this.repController.create(reporte);
     }
     
 }

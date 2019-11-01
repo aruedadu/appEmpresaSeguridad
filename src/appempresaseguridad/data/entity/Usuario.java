@@ -6,7 +6,9 @@
 package appempresaseguridad.data.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,8 +18,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,6 +39,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Usuario.findByIdEmpresa", query = "SELECT u FROM Usuario u WHERE u.idUsuario IN (SELECT e.turnoUsuarioEmpresaPK.idUsuario FROM TurnoUsuarioEmpresa e WHERE e.turnoUsuarioEmpresaPK.idEmpresa = :idEmpresa AND :fecha BETWEEN e.turnoUsuarioEmpresaPK.fehcaInicioTurno AND e.turnoUsuarioEmpresaPK.fechaFinTurno)"),
     @NamedQuery(name = "Usuario.findByPassUsuarioNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.passUsuario = :passUsuario AND u.nombreUsuario = :nombreUsuario")})
 public class Usuario implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarioRegistra")
+    private Collection<ReporteTurnos> reporteTurnosCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuarioReportado")
+    private Collection<ReporteTurnos> reporteTurnosCollection1;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -130,6 +138,24 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return this.getNombreUsuario();
+    }
+
+    @XmlTransient
+    public Collection<ReporteTurnos> getReporteTurnosCollection() {
+        return reporteTurnosCollection;
+    }
+
+    public void setReporteTurnosCollection(Collection<ReporteTurnos> reporteTurnosCollection) {
+        this.reporteTurnosCollection = reporteTurnosCollection;
+    }
+
+    @XmlTransient
+    public Collection<ReporteTurnos> getReporteTurnosCollection1() {
+        return reporteTurnosCollection1;
+    }
+
+    public void setReporteTurnosCollection1(Collection<ReporteTurnos> reporteTurnosCollection1) {
+        this.reporteTurnosCollection1 = reporteTurnosCollection1;
     }
     
 }

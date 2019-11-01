@@ -51,7 +51,7 @@ public class LoguinLogic {
 
                 case "SUPERVISOR":
                     
-                    SupervisorFrame frameSupervisor = new SupervisorFrame();
+                    SupervisorFrame frameSupervisor = new SupervisorFrame(userObject);
                     frameSupervisor.setLocationRelativeTo(null);
                     frameSupervisor.setVisible(true);
                     break;

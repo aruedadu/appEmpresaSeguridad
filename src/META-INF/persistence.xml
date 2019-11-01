@@ -9,6 +9,7 @@
     <class>appempresaseguridad.data.entity.Turno</class>
     <class>appempresaseguridad.data.entity.Usuario</class>
     <class>appempresaseguridad.data.entity.Persona</class>
+    <class>appempresaseguridad.data.entity.ReporteTurnos</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/empresa_seguridad?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
