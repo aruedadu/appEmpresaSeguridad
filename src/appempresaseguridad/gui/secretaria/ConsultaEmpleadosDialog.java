@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author alejrudu
+ * @author Felipe Garcia
  */
 public class ConsultaEmpleadosDialog extends javax.swing.JDialog {
 

@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  *
- * @author alejrudu
+ * @author Felipe Garcia
  */
 public class SupervisorLogica {
     

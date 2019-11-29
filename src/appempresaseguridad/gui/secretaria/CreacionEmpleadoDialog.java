@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author alejrudu
+ * @author Felipe Garcia
  */
 public class CreacionEmpleadoDialog extends javax.swing.JDialog {
 

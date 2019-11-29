@@ -18,7 +18,7 @@ import javax.persistence.criteria.Root;
 
 /**
  *
- * @author alejrudu
+ * @author Felipe Garcia
  */
 public class TurnoUsuarioEmpresaJpaController implements Serializable {
 

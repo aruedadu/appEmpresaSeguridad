@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author alejrudu
+ * @author Felipe Garcia
  */
 public class AdministradorFrame extends javax.swing.JFrame {
 

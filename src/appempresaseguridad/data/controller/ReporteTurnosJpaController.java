@@ -19,7 +19,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author alejrudu
+ * @author Felipe Garcia
  */
 public class ReporteTurnosJpaController implements Serializable {
 
